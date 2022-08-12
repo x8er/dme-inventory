@@ -1,0 +1,8 @@
+@import './fonts/Poppins/style.css';
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: Poppins;
+}
