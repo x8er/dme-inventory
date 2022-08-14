@@ -1,6 +1,7 @@
 <template>
-  <button :class="{ green: props.green }">
-    <slot name="icon"></slot>
+  <button :class="{ coloured: props.coloured }">
+    <!-- <div v-html="iconComponent" /> -->
+    <component :is="iconComponent" />
     <span>
       <slot></slot>
     </span>
@@ -8,7 +9,16 @@
 </template>
 
 <script setup>
-const props = defineProps({ green: Boolean });
+import { onMounted, ref } from 'vue';
+import { getSvgIcon } from '@/utils/getSvgIcon';
+const props = defineProps({ coloured: Boolean, iconName: String });
+const iconComponent = ref();
+
+onMounted(async () => {
+  const test = props.iconName && (await getSvgIcon(props.iconName));
+  console.log(test);
+  iconComponent.value = test;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -18,12 +28,13 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 5px;
   padding: 8px 10px;
   border: 1px solid #8c99af;
   border-radius: 2px;
   background-color: transparent;
 
-  &.green {
+  &.coloured {
     background-color: #05a3ad;
     border: 0;
 
@@ -31,7 +42,7 @@ button {
       color: white;
     }
 
-    svg * {
+    svg {
       fill: white;
     }
   }
@@ -39,11 +50,7 @@ button {
   svg {
     width: 24px;
     height: 24px;
-    margin-right: 5px;
-
-    * {
-      fill: #8c99af;
-    }
+    fill: #8c99af;
   }
 
   span {

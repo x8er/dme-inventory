@@ -8,10 +8,7 @@
       <DefaultBottom class="custom-button-style cancel" @click="emits('close')">
         Cancel
       </DefaultBottom>
-      <DefaultBottom class="custom-button-style" green>
-        <template #icon>
-          <SaveSVG />
-        </template>
+      <DefaultBottom class="custom-button-style" coloured icon-name="save">
         Save
       </DefaultBottom>
     </template>
@@ -22,7 +19,6 @@
 import { provide } from 'vue';
 import DefaultTemplate from '@/components/DefaultModal.vue';
 import DefaultBottom from '@/components/DefaultBottom.vue';
-import SaveSVG from '@/assets/icons/save.svg';
 
 const props = defineProps({ show: Boolean });
 const emits = defineEmits(['close']);
