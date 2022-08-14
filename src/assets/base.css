@@ -3,6 +3,10 @@
 * {
   padding: 0;
   margin: 0;
-  border: 0;
   font-family: Poppins;
+  position: relative;
+}
+
+img {
+  display: block;
 }

@@ -1,6 +1,5 @@
 <template>
-  <div>SubCatalog View</div>
-  <RouterView />
+  <div>Block Title</div>
 </template>
 
 <script setup></script>

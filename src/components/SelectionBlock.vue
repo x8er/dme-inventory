@@ -1,6 +1,5 @@
 <template>
-  <div>SubCatalog View</div>
-  <RouterView />
+  <div>Selection Table</div>
 </template>
 
 <script setup></script>
