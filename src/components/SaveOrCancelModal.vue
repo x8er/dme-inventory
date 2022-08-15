@@ -1,5 +1,5 @@
 <template>
-  <DefaultTemplate @close="emits('close')">
+  <DefaultModal @close="emits('close')">
     <template #title>
       <slot name="title"></slot>
     </template>
@@ -20,18 +20,18 @@
         Save
       </DefaultBottom>
     </template>
-  </DefaultTemplate>
+  </DefaultModal>
 </template>
 
 <script setup>
-import { provide } from 'vue';
-import DefaultTemplate from '@/components/DefaultModal.vue';
+import { provide, toRef } from 'vue';
+import DefaultModal from '@/components/DefaultModal.vue';
 import DefaultBottom from '@/components/DefaultBottom.vue';
 
 const props = defineProps({ show: Boolean });
 const emits = defineEmits(['close', 'cancel', 'save']);
 
-provide('showModal', props.show);
+provide('showModal', toRef(props, 'show'));
 </script>
 
 <style lang="scss" scoped>
