@@ -1,13 +1,12 @@
 <template>
   <div>
-    <span>Catalog View</span>
+    <SelectionBlock />
     <RouterView />
-    <SaveOrCancelModal> </SaveOrCancelModal>
   </div>
 </template>
 
 <script setup>
-import SaveOrCancelModal from '@/components/SaveOrCancelModal.vue';
+import SelectionBlock from '@/components/SelectionBlock.vue';
 </script>
 
 <style lang="scss" scoped></style>

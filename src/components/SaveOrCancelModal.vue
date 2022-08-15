@@ -5,10 +5,18 @@
     </template>
     <slot></slot>
     <template #bottom>
-      <DefaultBottom class="custom-button-style cancel" @click="emits('close')">
+      <DefaultBottom
+        class="custom-button-style cancel"
+        @click="emits('cancel')"
+      >
         Cancel
       </DefaultBottom>
-      <DefaultBottom class="custom-button-style" coloured icon-name="save">
+      <DefaultBottom
+        class="custom-button-style"
+        coloured
+        icon-name="save"
+        @click="emits('save')"
+      >
         Save
       </DefaultBottom>
     </template>
@@ -21,7 +29,7 @@ import DefaultTemplate from '@/components/DefaultModal.vue';
 import DefaultBottom from '@/components/DefaultBottom.vue';
 
 const props = defineProps({ show: Boolean });
-const emits = defineEmits(['close']);
+const emits = defineEmits(['close', 'cancel', 'save']);
 
 provide('showModal', props.show);
 </script>

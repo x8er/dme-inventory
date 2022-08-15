@@ -1,6 +1,5 @@
 <template>
   <button :class="{ coloured: props.coloured }">
-    <!-- <div v-html="iconComponent" /> -->
     <component :is="iconComponent" />
     <span>
       <slot></slot>
@@ -9,17 +8,17 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 import { getSvgIcon } from '@/utils/getSvgIcon';
-const props = defineProps({ coloured: Boolean, iconName: String });
-const iconComponent = ref();
 
-onMounted(async () => {
-  const test = props.iconName && (await getSvgIcon(props.iconName));
-  console.log(test);
-  iconComponent.value = test;
-});
+const props = defineProps({ coloured: Boolean, iconName: String });
+
+const iconComponent = computed(
+  () => props.iconName && defineAsyncComponent(() => getSvgIcon(props.iconName))
+);
 </script>
+
+<script></script>
 
 <style lang="scss" scoped>
 button {
