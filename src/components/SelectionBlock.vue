@@ -34,19 +34,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, toRef, watch } from 'vue';
 import TitleWithAdd from '@/components/TitleWithAdd.vue';
 import SaveOrCancelModal from '@/components/SaveOrCancelModal.vue';
 import InputField from '@/components/InputField.vue';
 import PencilSVG from '@/assets/icons/pencil.svg';
 
-const props = defineProps({ title: String, items: Array });
+const props = defineProps({ title: String, items: Array, select: Number });
 const emits = defineEmits(['selected', 'updated', 'created']);
 
+const refSelect = toRef(props, 'select');
 const showModal = ref(false);
 const isAddAction = ref(false);
 const updatedItem = ref({ name: '' });
-const selectedItemId = ref();
+const selectedItemId = ref(refSelect.value);
 
 const handleAddClick = () => {
   showModal.value = true;
@@ -60,7 +61,6 @@ const handlePencilClick = (item) => {
 
 const handleItemClick = (id) => {
   emits('selected', id);
-  selectedItemId.value = id;
 };
 
 const handleSaveClick = () => {
@@ -75,12 +75,16 @@ const handleModalExit = () => {
   showModal.value = false;
   updatedItem.value = { name: '' };
 };
+
+watch(refSelect, (newValue) => {
+  selectedItemId.value = newValue;
+});
 </script>
 
 <style lang="scss" scoped>
 .selection-block {
   border-right: 1px solid #e1e1e1;
-  width: 260px;
+  min-width: 260px;
 
   .list > div,
   .head {

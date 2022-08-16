@@ -22,7 +22,7 @@ const password = ref('');
 
 const handleButtonClick = () => {
   authStore.login();
-  router.push('catalog');
+  router.push('/catalog');
 };
 </script>
 

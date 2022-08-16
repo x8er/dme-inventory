@@ -3,6 +3,7 @@
     <SelectionBlock
       title="Categories"
       :items="categories"
+      :select="parseInt(router.currentRoute.value.params?.catId)"
       @updated="handleUpdated"
       @selected="handleSelected"
     />

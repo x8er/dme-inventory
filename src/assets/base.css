@@ -6,6 +6,17 @@
   font-family: Poppins;
   position: relative;
   box-sizing: border-box;
+  scrollbar-width: auto;
+  scrollbar-color: #05a3ad #ffffff;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #05a3ad;
+  border-radius: 1px;
 }
 
 #app {
